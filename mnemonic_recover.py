@@ -21,9 +21,6 @@ words = algosdk.wordlist.word_list_raw().split('\n')
 
 print("\n\n\n")
 
-# Do initial check for working mnemonic
-check_mnem_pub(mnemonic_broken,public_key,"Mnemonic is functional, skipping search.")
-
 # Detect any non-supported words
 for split in mnemonic_broken.split():
     if split not in words:
@@ -32,6 +29,9 @@ for split in mnemonic_broken.split():
         print("Invalid mnemonic word '{}'".format(split))
         mnem_split.pop(invalid_idx)
         mnemonic_broken = " ".join(mnem_split)
+
+# Do initial check for working mnemonic
+check_mnem_pub(mnemonic_broken,public_key,"Mnemonic is functional, skipping search.")
 
 # For each place
 for place in range(algosdk.constants.mnemonic_len):
